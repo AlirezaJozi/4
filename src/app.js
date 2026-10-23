@@ -1,0 +1,25 @@
+import express from 'express';
+import helmet from 'helmet';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import pinoHttp from 'pino-http';
+import path from 'node:path';
+import { env } from './config/env.js';
+import { pool } from './config/db.js';
+import { csrfProtection } from './middlewares/auth.js';
+import { notFound, errorHandler } from './middlewares/error.js';
+import { router } from './routes/index.js';
+
+export const app = express();
+app.disable('x-powered-by');
+app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
+app.use(cors({ origin: env.CORS_ORIGIN.split(',').map((v) => v.trim()), credentials: true }));
+app.use(express.json({ limit: '1mb' }));
+app.use(express.urlencoded({ extended: false, limit: '1mb' }));
+app.use(cookieParser());
+app.use(pinoHttp({ redact: ['req.headers.authorization', 'req.headers.cookie', 'req.body.password', 'req.body.otp'] }));
+app.use('/uploads', express.static(path.resolve(env.UPLOAD_DIR), { fallthrough: false, index: false }));
+app.get('/api/v1/health', async (req, res, next) => { try { await pool.query('SELECT 1'); res.json({ success: true, message: 'سرویس فعال است', data: { status: 'ok' } }); } catch (e) { next(e); } });
+app.use('/api/v1', csrfProtection, router);
+app.use(notFound);
+app.use(errorHandler);

@@ -1,0 +1,43 @@
+:root {
+  --color-bg: #faf8f5;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f6f2ec;
+  --color-ink: #20211f;
+  --color-muted: #6e6a64;
+  --color-primary: #1f6f63;
+  --color-primary-strong: #15584e;
+  --color-primary-soft: #e8f2ef;
+  --color-accent: #c7a17a;
+  --color-accent-soft: #f6eee5;
+  --color-border: #e7e1d8;
+  --color-danger: #b42318;
+  --color-danger-soft: #fef3f2;
+  --color-success: #2f6b4f;
+  --color-success-soft: #edf7f1;
+  --color-warning: #9a6700;
+  --color-warning-soft: #fff8e6;
+
+  --radius-xs: 8px;
+  --radius-sm: 12px;
+  --radius: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 1px 2px rgba(32, 33, 31, 0.06);
+  --shadow: 0 14px 40px rgba(32, 33, 31, 0.09);
+  --shadow-lg: 0 24px 70px rgba(32, 33, 31, 0.14);
+
+  --container: 1180px;
+  --font-fa: 'Vazirmatn Variable', 'Vazirmatn', 'Segoe UI', Tahoma, sans-serif;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  --header-height: 76px;
+}
